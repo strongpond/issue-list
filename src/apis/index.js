@@ -11,7 +11,7 @@ const instance = axios.create({
 
 export const getIssueList = async () => {
   try {
-    const response = await instance.get("/issues");
+    const response = await instance.get("/issues?sort=comments&direction=desc");
     return response;
   } catch (error) {
     return error;

@@ -25,6 +25,7 @@ export const List = () => {
         return (
           <ListItem
             key={data.id}
+            idx={idx}
             number={data.number}
             title={data.title}
             comments={data.comments}
