@@ -16,5 +16,5 @@ export default IssueList;
 const Container = styled.div`
   ${({ theme }) => theme.flex("null", "center", "column")};
   height: 100vh;
-  margin-top: 5%;
+  margin-top: 3%;
 `;

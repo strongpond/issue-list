@@ -48,15 +48,22 @@ const ImgBox = styled.div`
 
 const ItemContent = styled.div`
   ${({ theme }) => theme.flex("center", "flex-start", "column")};
+  max-width: 550px;
 `;
 
-const ItemTitle = styled.p``;
+const ItemTitle = styled.p`
+  font-weight: 700;
+`;
 
 const DescBox = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 5px;
+  font-size: 14px;
 `;
 
 const Desc = styled.p``;
 
-const ItemComment = styled.div``;
+const ItemComment = styled.div`
+  width: 80px;
+`;
