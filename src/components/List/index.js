@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import styled from "styled-components";
-import { useFetch } from "../../apis";
-import useInfiniteScroll from "../../hooks/useInfinityScroll";
+import styled, { keyframes } from "styled-components";
+import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
@@ -25,45 +24,8 @@ export const List = () => {
     node && observerRef.current.observe(node);
   };
 
-  /* const handleIntersect = useCallback(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && issues.length !== 0) {
-          const data = getIssues(); // data 확인
-          // 그러고 나중에 위에 if문에다가 end라는 state도 확인해줘야지 false일때만 하는거지
-
-          // console.log("hi");
-          // onIntersect(entry, observer); / 얘는 아마 필요없을듯???
-        }
-      });
-    },
-    [issues]
-  );
-
-  useEffect(() => {
-    if (!observerRef.current) return undefined;
-    // const options = { root: null, rootMargin: "0px", threshold: 0.5 }; // default값인지 검색해보기
-
-    const observer = new IntersectionObserver(handleIntersect);
-    observer.observe(observerRef.current);
-
-    return () => observer.disconnect();
-  }, [handleIntersect, observerRef]);
-
-  const getIssues = useCallback(async () => {
-    const result = await useFetch(pageNum);
-    setIssues(result.data); // 이게 처음일떄는 set이고 두번째일때는 이전값이랑 합쳐주는 걸로 바꿔야함
-    setPageNum((page) => page + 1); // 이게 비동기라서 ++되는지도 확인해야됨 (만약에안될경우)
-    console.log(pageNum);
-  }, []);
-
-  useEffect(() => {
-    getIssues();
-    console.log(pageNum);
-  }, [getIssues]); */
-
   return (
-    <>
+    <Container>
       <ListWrapper>
         {list?.map((data, idx) => {
           return (
@@ -80,13 +42,43 @@ export const List = () => {
         })}
       </ListWrapper>
       <div ref={observer} />
-      <>{isLoading && <Loading>로딩중...</Loading>}</>
-    </>
+      {isLoading && (
+        <LoadingWrapper>
+          <Loading />
+        </LoadingWrapper>
+      )}
+    </Container>
   );
 };
 
-const ListWrapper = styled.div`
-  height: 100vh;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 `;
 
-const Loading = styled.p``;
+const ListWrapper = styled.div``;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const rotation = keyframes`
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+`;
+
+const Loading = styled.div`
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-top-color: #6487f8;
+  border-bottom-color: #6487f8;
+  animation: ${rotation} 0.8s ease infinite;
+`;

@@ -48,7 +48,7 @@ const ImgBox = styled.div`
 
 const ItemContent = styled.div`
   ${({ theme }) => theme.flex("center", "flex-start", "column")};
-  max-width: 550px;
+  max-width: 500px;
 `;
 
 const ItemTitle = styled.p`
