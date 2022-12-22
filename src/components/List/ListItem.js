@@ -9,11 +9,17 @@ const ListItem = ({ idx, number, title, comments, user, created_at }) => {
   return (
     <>
       {idx === 4 && (
-        <ItemWrapper>
+        <ImgWrapper>
           <ImgBox>
-            <img src="/images/ad_wanted.webp" />
+            <a
+              target="_blank"
+              href="https://www.wanted.co.kr/"
+              rel="noreferrer"
+            >
+              <img src="/images/ad_wanted.webp" />
+            </a>
           </ImgBox>
-        </ItemWrapper>
+        </ImgWrapper>
       )}
       <ItemWrapper>
         <ItemContent>
@@ -33,17 +39,24 @@ const ListItem = ({ idx, number, title, comments, user, created_at }) => {
 
 export default ListItem;
 
+const ImgWrapper = styled.div`
+  ${({ theme }) => theme.flex("center", "center")};
+  margin-top: 10px;
+  padding: 30px;
+  width: 50vw;
+`;
+
+const ImgBox = styled.div`
+  display: flex;
+  object-fit: cover;
+`;
+
 const ItemWrapper = styled.div`
   ${({ theme }) => theme.flex("space-between", "center", "row")};
   margin-top: 10px;
   padding: 30px;
   width: 50vw;
   border: 1px solid black;
-`;
-
-const ImgBox = styled.div`
-  display: flex;
-  object-fit: cover;
 `;
 
 const ItemContent = styled.div`
