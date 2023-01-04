@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef } from "react";
 
 import styled, { keyframes } from "styled-components";
 import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
-  const navigate = useNavigate();
   const [pageNum, setPageNum] = useState(1);
   const { list, hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
