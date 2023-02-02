@@ -1,0 +1,1 @@
+export { issueListDataAtom } from "./issueListDataAtom";

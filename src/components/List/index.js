@@ -1,15 +1,18 @@
 import React, { useState, useRef } from "react";
+import { useRecoilValue } from "recoil";
 
 import styled, { keyframes } from "styled-components";
+import { issueListDataAtom } from "../../atoms";
 import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
   const [pageNum, setPageNum] = useState(1);
-  const { list, hasMore, isLoading } = useFetch(pageNum);
+  const issueListData = useRecoilValue(issueListDataAtom);
+  const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
 
-  console.log(list);
+  console.log(issueListData);
 
   const observer = (node) => {
     if (isLoading) return;
@@ -31,7 +34,7 @@ export const List = () => {
   return (
     <Container>
       <ListWrapper>
-        {list?.map((data, idx) => {
+        {issueListData?.map((data, idx) => {
           return (
             <ListItem
               key={data.id}

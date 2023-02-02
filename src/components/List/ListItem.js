@@ -16,7 +16,7 @@ const ListItem = ({ idx, number, title, comments, user, created_at }) => {
               href="https://www.wanted.co.kr/"
               rel="noreferrer"
             >
-              <img src="/images/ad_wanted.webp" />
+              <img src="/images/ad_wanted.webp" alt="wanted" />
             </a>
           </ImgBox>
         </ImgWrapper>
