@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-const ListItem = ({ idx, number, title, comments, user, created_at }) => {
+const ListItem = ({ idx, id, number, title, comments, user, created_at }) => {
   const date = dayjs(created_at);
   const createDate = date.format("YYYY년 MM월 DD일");
 

@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Header } from "../components";
 
-const IssueDetails = () => {
+import { Header, Detail } from "../components";
+
+const IssueDetail = () => {
   return (
     <Container>
       <Header />
+      <Detail />
     </Container>
   );
 };
 
-export default IssueDetails;
+export default IssueDetail;
 
 const Container = styled.div`
   ${({ theme }) => theme.flex("null", "center", "column")};

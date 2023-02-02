@@ -35,15 +35,18 @@ export const List = () => {
     <Container>
       <ListWrapper>
         {issueListData?.map((data, idx) => {
+          const { id, number, title, comments, created_at } = data;
+
           return (
             <ListItem
-              key={data.id}
+              key={id}
+              id={id}
               idx={idx}
-              number={data.number}
-              title={data.title}
-              comments={data.comments}
+              number={number}
+              title={title}
+              comments={comments}
               user={data.user.login}
-              created_at={data.created_at}
+              created_at={created_at}
               // goDetail={goDetail}
             />
           );

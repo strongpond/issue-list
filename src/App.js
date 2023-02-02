@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
-import { IssueList, IssueDetails } from "./pages";
+import { IssueList, IssueDetail } from "./pages";
 
 const App = () => {
   return (
@@ -10,7 +10,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<IssueList />} />
-          <Route exact path="/details/:id" element={<IssueDetails />} />
+          <Route exact path="/detail/" element={<IssueDetail />} />
+          <Route exact path="/detail/:id" element={<IssueDetail />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>
