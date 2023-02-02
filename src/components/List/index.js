@@ -9,6 +9,8 @@ export const List = () => {
   const { list, hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
 
+  console.log(list);
+
   const observer = (node) => {
     if (isLoading) return;
     if (observerRef.current) observerRef.current.disconnect();
@@ -21,6 +23,10 @@ export const List = () => {
 
     node && observerRef.current.observe(node);
   };
+
+  // const goDetail = (e) => {
+  //   console.log(e);
+  // };
 
   return (
     <Container>
@@ -35,6 +41,7 @@ export const List = () => {
               comments={data.comments}
               user={data.user.login}
               created_at={data.created_at}
+              // goDetail={goDetail}
             />
           );
         })}
