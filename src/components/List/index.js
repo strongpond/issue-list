@@ -1,16 +1,19 @@
 import React, { useState, useRef } from "react";
-import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import styled, { keyframes } from "styled-components";
-import { issueListDataAtom } from "../../atoms";
+import { issueListDataAtom, issueSelectedAtom } from "../../atoms";
 import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
   const [pageNum, setPageNum] = useState(1);
   const issueListData = useRecoilValue(issueListDataAtom);
+  const setIssueSelected = useSetRecoilState(issueSelectedAtom);
   const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
+  const navigate = useNavigate();
 
   console.log(issueListData);
 
@@ -27,9 +30,11 @@ export const List = () => {
     node && observerRef.current.observe(node);
   };
 
-  // const goDetail = (e) => {
-  //   console.log(e);
-  // };
+  const goToDetail = (id) => {
+    console.log(id);
+    setIssueSelected(issueListData.filter((data) => data.id === id));
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <Container>
@@ -47,7 +52,7 @@ export const List = () => {
               comments={comments}
               user={data.user.login}
               created_at={created_at}
-              // goDetail={goDetail}
+              goToDetail={goToDetail}
             />
           );
         })}
