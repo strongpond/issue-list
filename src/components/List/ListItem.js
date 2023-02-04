@@ -76,6 +76,7 @@ const ItemWrapper = styled.div`
 
 const ItemContent = styled.div`
   ${({ theme }) => theme.flex("center", "flex-start", "column")};
+  margin-right: 15px;
   max-width: 500px;
 `;
 
@@ -93,5 +94,5 @@ const DescBox = styled.div`
 const Desc = styled.p``;
 
 const ItemComment = styled.div`
-  width: 80px;
+  min-width: 80px;
 `;
