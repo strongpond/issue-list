@@ -1,17 +1,18 @@
 import React from "react";
 import { BsFillCaretLeftFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import styled from "styled-components";
-import { issueSelectedAtom } from "../atoms";
+import { issueListDataAtom, issueSelectedAtom } from "../atoms";
 
 const Header = () => {
   const navigate = useNavigate();
+  const setIssueListData = useSetRecoilState(issueListDataAtom);
   const [issueSelected, setIssueSelected] = useRecoilState(issueSelectedAtom);
 
-  console.log(issueSelected);
   const goToMain = () => {
+    setIssueListData([]);
     setIssueSelected([]);
     navigate("/");
   };

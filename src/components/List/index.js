@@ -1,19 +1,16 @@
 import React, { useState, useRef } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import styled, { keyframes } from "styled-components";
-import { issueListDataAtom, issueSelectedAtom } from "../../atoms";
+import { issueListDataAtom } from "../../atoms";
 import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
   const [pageNum, setPageNum] = useState(1);
   const issueListData = useRecoilValue(issueListDataAtom);
-  const setIssueSelected = useSetRecoilState(issueSelectedAtom);
   const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
-
-  console.log(issueListData);
 
   const observer = (node) => {
     if (isLoading) return;
@@ -27,8 +24,6 @@ export const List = () => {
 
     node && observerRef.current.observe(node);
   };
-
-  setIssueSelected([]);
 
   return (
     <Container>

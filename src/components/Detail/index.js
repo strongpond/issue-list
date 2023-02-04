@@ -7,6 +7,7 @@ import { issueSelectedAtom } from "../../atoms";
 
 export const Detail = () => {
   const issueSelected = useRecoilValue(issueSelectedAtom);
+  if (issueSelected.length === 0) return;
   const { number, title, user, created_at, comments, body } = issueSelected[0];
   const { login, avatar_url } = user;
   const date = dayjs(created_at);

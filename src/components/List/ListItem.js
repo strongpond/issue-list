@@ -14,8 +14,9 @@ const ListItem = ({ idx, id, number, title, comments, user, created_at }) => {
   const issueListData = useRecoilValue(issueListDataAtom);
   const setIssueSelected = useSetRecoilState(issueSelectedAtom);
 
+  setIssueSelected([]);
+
   const goToDetail = () => {
-    // console.log(issueListData.filter((data) => data.id === id));
     setIssueSelected(issueListData.filter((data) => data.id === id));
     navigate(`/detail/${id}`);
   };
