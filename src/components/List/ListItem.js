@@ -1,19 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-const ListItem = ({
-  idx,
-  id,
-  number,
-  title,
-  comments,
-  user,
-  created_at,
-  goToDetail,
-}) => {
+import { issueListDataAtom, issueSelectedAtom } from "../../atoms";
+
+const ListItem = ({ idx, id, number, title, comments, user, created_at }) => {
   const date = dayjs(created_at);
   const createDate = date.format("YYYY년 MM월 DD일");
+  const navigate = useNavigate();
+  const issueListData = useRecoilValue(issueListDataAtom);
+  const setIssueSelected = useSetRecoilState(issueSelectedAtom);
+
+  const goToDetail = () => {
+    // console.log(issueListData.filter((data) => data.id === id));
+    setIssueSelected(issueListData.filter((data) => data.id === id));
+    navigate(`/detail/${id}`);
+  };
 
   return (
     <>

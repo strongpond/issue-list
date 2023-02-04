@@ -1,28 +1,38 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useRecoilValue } from "recoil";
 
+import dayjs from "dayjs";
 import styled from "styled-components";
-
-import { useFetch } from "../../hooks";
+import { issueSelectedAtom } from "../../atoms";
 
 export const Detail = () => {
-  //필요한 내용 => number, title, user.login, created_at, user.avatar_url, comments, body
+  const issueSelected = useRecoilValue(issueSelectedAtom);
+  const { number, title, user, created_at, comments, body } = issueSelected[0];
+  const { login, avatar_url } = user;
+  const date = dayjs(created_at);
+  const createDate = date.format("YYYY년 MM월 DD일");
+
+  console.log(issueSelected);
   return (
     <Container>
       <HeaderBox>
         <ProfileBox>
-          <ProfileImg />
+          <ProfileImg src={avatar_url} alt={login} />
         </ProfileBox>
         <TitleContentBox>
           <TitleMainBox>
-            <Title>#이슈번호 이슈제목</Title>
-            <IssueInfo>작성자: 작성일: </IssueInfo>
+            <Title>
+              #{number} {title}
+            </Title>
+            <IssueInfo>
+              작성자: {login}, 작성일: {createDate}
+            </IssueInfo>
           </TitleMainBox>
-          <CommentCount>코멘트: </CommentCount>
+          <CommentCount>코멘트: {comments}</CommentCount>
         </TitleContentBox>
       </HeaderBox>
       <ContentBox>
-        <IssueBody>본문</IssueBody>
+        <IssueBody>{body}</IssueBody>
       </ContentBox>
     </Container>
   );
@@ -32,7 +42,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
-  min-width: 50vw;
+  width: 50vw;
   padding: 30px;
   border: 1px solid black;
 `;
@@ -47,13 +57,14 @@ const HeaderBox = styled.div`
 `;
 
 const ProfileBox = styled.div`
-  min-width: 50px;
-  min-height: 50px;
   margin-right: 20px;
-  border: 1px solid red;
 `;
 
-const ProfileImg = styled.img``;
+const ProfileImg = styled.img`
+  width: 50px;
+  height: 50px;
+  object-fit: fill;
+`;
 
 const TitleContentBox = styled.div`
   display: flex;
@@ -74,7 +85,9 @@ const IssueInfo = styled.h2`
   margin-top: 10px;
 `;
 
-const CommentCount = styled.h2``;
+const CommentCount = styled.h2`
+  min-width: 80px;
+`;
 
 const ContentBox = styled.div`
   margin-top: 40px;

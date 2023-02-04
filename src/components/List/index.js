@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 import styled, { keyframes } from "styled-components";
@@ -13,7 +12,6 @@ export const List = () => {
   const setIssueSelected = useSetRecoilState(issueSelectedAtom);
   const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
-  const navigate = useNavigate();
 
   console.log(issueListData);
 
@@ -30,11 +28,7 @@ export const List = () => {
     node && observerRef.current.observe(node);
   };
 
-  const goToDetail = (id) => {
-    console.log(id);
-    setIssueSelected(issueListData.filter((data) => data.id === id));
-    navigate(`/detail/${id}`);
-  };
+  setIssueSelected([]);
 
   return (
     <Container>
@@ -52,7 +46,6 @@ export const List = () => {
               comments={comments}
               user={data.user.login}
               created_at={created_at}
-              goToDetail={(id) => goToDetail(id)}
             />
           );
         })}
