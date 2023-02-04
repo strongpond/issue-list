@@ -30,7 +30,7 @@ const ListItem = ({
           </ImgBox>
         </ImgWrapper>
       )}
-      <ItemWrapper onClick={(id) => goToDetail(id)}>
+      <ItemWrapper onClick={goToDetail}>
         <ItemContent>
           <ItemTitle>
             #{number}&nbsp;{title}

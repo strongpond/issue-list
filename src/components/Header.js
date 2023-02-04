@@ -10,7 +10,7 @@ export default Header;
 const Head = styled.h1`
   ${({ theme }) => theme.flex("center", "center", null)};
   padding: 30px;
-  width: 50vw;
+  min-width: 50vw;
   border: 1px solid black;
   font-size: x-large;
 `;

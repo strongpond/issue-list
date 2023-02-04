@@ -52,7 +52,7 @@ export const List = () => {
               comments={comments}
               user={data.user.login}
               created_at={created_at}
-              goToDetail={goToDetail}
+              goToDetail={(id) => goToDetail(id)}
             />
           );
         })}
