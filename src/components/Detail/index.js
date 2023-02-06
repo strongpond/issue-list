@@ -13,7 +13,6 @@ export const Detail = () => {
   const date = dayjs(created_at);
   const createDate = date.format("YYYY년 MM월 DD일");
 
-  console.log(issueSelected);
   return (
     <Container>
       <HeaderBox>
