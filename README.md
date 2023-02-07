@@ -39,6 +39,7 @@
 - Javascript
 - Styled-Components
 - Recoil
+- Vercel(배포)
 
 <br />
 
