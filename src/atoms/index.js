@@ -1,1 +1,5 @@
-export { issueListDataAtom, issueSelectedAtom } from "./issueListDataAtom";
+export {
+  issueListDataAtom,
+  issueSelectedAtom,
+  pageNumAtom,
+} from "./issueListDataAtom";

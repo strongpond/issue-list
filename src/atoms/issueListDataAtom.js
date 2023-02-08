@@ -9,3 +9,8 @@ export const issueSelectedAtom = atom({
   key: "issueSelected",
   default: [],
 });
+
+export const pageNumAtom = atom({
+  key: "pageNum",
+  default: 1,
+});

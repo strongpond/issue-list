@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 import styled from "styled-components";
-import { issueListDataAtom, issueSelectedAtom } from "../atoms";
+import { issueSelectedAtom, pageNumAtom } from "../atoms";
 
 const Header = () => {
   const navigate = useNavigate();
-  const setIssueListData = useSetRecoilState(issueListDataAtom);
   const [issueSelected, setIssueSelected] = useRecoilState(issueSelectedAtom);
+  const setPageNum = useSetRecoilState(pageNumAtom);
 
   const goToMain = () => {
-    setIssueListData([]);
     setIssueSelected([]);
+    setPageNum((prev) => prev + 1);
     navigate("/");
   };
 

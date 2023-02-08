@@ -1,14 +1,15 @@
-import React, { useState, useRef } from "react";
-import { useRecoilValue } from "recoil";
+import React, { useRef } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import styled, { keyframes } from "styled-components";
-import { issueListDataAtom } from "../../atoms";
+import { issueListDataAtom, pageNumAtom } from "../../atoms";
 import { useFetch } from "../../hooks";
 import ListItem from "./ListItem";
 
 export const List = () => {
-  const [pageNum, setPageNum] = useState(1);
+  const [pageNum, setPageNum] = useRecoilState(pageNumAtom);
   const issueListData = useRecoilValue(issueListDataAtom);
+  console.log(pageNum);
   const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
 
