@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import { getIssueList } from "../apis";
 import { issueListDataAtom } from "../atoms";
 
 const useFetch = (page) => {
-  const [issueListData, setIssueListData] = useRecoilState(issueListDataAtom);
+  const setIssueListData = useSetRecoilState(issueListDataAtom);
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,11 +17,7 @@ const useFetch = (page) => {
         throw new Error(`서버에 오류가 있습니다.`);
       }
 
-      if (issueListData.length > 0) {
-        setIssueListData((prev) => [...prev, ...response]);
-      } else {
-        setIssueListData(response);
-      }
+      setIssueListData((prev) => [...prev, ...response]);
 
       setHasMore(response.length > 0);
       setIsLoading(false);
