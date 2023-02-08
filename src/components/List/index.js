@@ -9,7 +9,6 @@ import ListItem from "./ListItem";
 export const List = () => {
   const [pageNum, setPageNum] = useRecoilState(pageNumAtom);
   const issueListData = useRecoilValue(issueListDataAtom);
-  console.log(pageNum);
   const { hasMore, isLoading } = useFetch(pageNum);
   const observerRef = useRef();
 
