@@ -16,7 +16,9 @@ const useFetch = (page) => {
       if (!response) {
         throw new Error(`서버에 오류가 있습니다.`);
       }
-      setIssueListData((prev) => [...prev, ...response]);
+      setIssueListData((prev) => {
+        return prev.length > 0 ? [...prev, ...response] : response;
+      });
       setHasMore(response.length > 0);
       setIsLoading(false);
     } catch (e) {
